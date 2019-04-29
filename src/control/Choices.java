@@ -2,7 +2,7 @@ package control;
 
 public enum Choices {
 
-    ONE("dodaj"),
+    ONE("dodaj"),  //<<<<<<<<<< here you can change from String to int for better menu overlook
     TWO("wynik"),
     THREE("koniec");
 
@@ -14,5 +14,14 @@ public enum Choices {
 
     public String getDescription(){
         return description;
+    }
+
+    public static Choices fromDescription(String description){
+        Choices[] choices = values();
+        for (Choices choice : choices) {
+            if(choice.getDescription().equals(description));
+            return choice;
+        }
+        return null;
     }
 }

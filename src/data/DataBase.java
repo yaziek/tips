@@ -8,7 +8,7 @@ public class DataBase {
 
     List<Integer> tips = new ArrayList<>();
 
-    public void add(Integer tip){
+    public void add(int tip){
         tips.add(tip);
     }
 

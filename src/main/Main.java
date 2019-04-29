@@ -14,12 +14,7 @@ public class Main {
         DataBase dataBase = new DataBase();
 
         control.showMenu();
-
-        dataBase.add(120);
-        dataBase.add(80);
-        dataBase.add(180);
-
-        dataBase.show();
+        control.mainControlPanel();
 
     }
 }
