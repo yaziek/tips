@@ -6,17 +6,17 @@ import java.util.List;
 
 public class DataBase {
 
-    List<Double> tips = new ArrayList<>();
+    List<Integer> tips = new ArrayList<>();
 
-    public void add(Double tip){
+    public void add(Integer tip){
         tips.add(tip);
     }
 
     public void show(){
         //using Iterator class (fast iterating) - later change it for lambda
-        Iterator<Double> numIterator = tips.iterator();
+        Iterator<Integer> numIterator = tips.iterator();
         while(numIterator.hasNext()){
-            double tip = numIterator.next();
+            int tip = numIterator.next();
             System.out.println(tip);
         }
     }
