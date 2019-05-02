@@ -1,10 +1,17 @@
+//Enum type doesnt work for Control.java
+// need to go back for it later
+// for now, simple static values chooosen
+//
+//
+//
+//
 package control;
 
 public enum Choices {
 
-    ONE("dodaj"),  //<<<<<<<<<< here you can change from String to int for better menu overlook
-    TWO("wynik"),
-    THREE("koniec");
+    ADD_TIP("1"),  //<<<<<<<<<< here you can change from String to int for better menu overlook
+    SHOW_TIPS("2"),
+    EXIT("3");
 
     private final String description;
 
