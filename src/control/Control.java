@@ -9,7 +9,8 @@ public class Control {
     public static final int ADD = 1;
     public static final int SHOW = 2;
     public static final int SUM = 3;
-    public static final int EXIT = 4;
+    public static final int AVG = 4;
+    public static final int EXIT = 5;
 
     DataBase dataBase = new DataBase();
     DataReader dataReader = new DataReader();
@@ -29,6 +30,9 @@ public class Control {
                 case SUM:
                     sumTips();
                     break;
+                case AVG:
+                    average();
+                    break;
                 case EXIT:
 //                    option = 0;
                     exit();
@@ -44,6 +48,7 @@ public class Control {
         System.out.println(ADD + " - dodaj swój napiwek");
         System.out.println(SHOW + " - pokazuje Twoje napiwki");
         System.out.println(SUM + " - wyświetla sumę napiwków");
+        System.out.println(AVG + " - wyświetla średnią z napiwków");
         System.out.println(EXIT + " - wyjście z programu");
     }
 
@@ -65,7 +70,7 @@ public class Control {
         System.out.println(); //added in terms of blank line after showing all results
     }
 
-    public void sumTips(){
+    public void sumTips() {
         int sum = 0;
         for (Integer integer : dataBase.getTips()) {
             sum += integer;
@@ -73,7 +78,16 @@ public class Control {
         System.out.println("Suma wszystkich Twoich napiwków to: " + sum);
     }
 
-    private void exit(){
+    public void average() {
+        int sum = 0;
+        for (Integer integer : dataBase.getTips()) {
+            sum += integer;
+        }
+        int avr = sum / dataBase.getTips().size();
+        System.out.println("Zarobiłeś średnio: " + avr);
+    }
+
+    private void exit() {
         System.out.println("Do zobaczenia!");
         dataReader.close();
     }
