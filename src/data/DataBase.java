@@ -3,22 +3,19 @@ package data;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Scanner;
 
 public class DataBase {
 
+
+
     List<Integer> tips = new ArrayList<>();
 
-    public void add(int tip) {
-        tips.add(tip);
+    public List<Integer> getTips() {
+        return tips;
     }
 
-    public void show() {
-        //using Iterator class (fast iterating) - later change it for lambda
-        Iterator<Integer> numIterator = tips.iterator();
-        while (numIterator.hasNext()) {
-            int tip = numIterator.next();
-            System.out.print(tip + "; ");
-        }
-        System.out.println(); //added in terms of blank line after showing all results
+    public void add(int tip){
+        tips.add(tip);
     }
 }
