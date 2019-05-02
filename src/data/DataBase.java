@@ -8,16 +8,17 @@ public class DataBase {
 
     List<Integer> tips = new ArrayList<>();
 
-    public void add(int tip){
+    public void add(int tip) {
         tips.add(tip);
     }
 
-    public void show(){
+    public void show() {
         //using Iterator class (fast iterating) - later change it for lambda
         Iterator<Integer> numIterator = tips.iterator();
-        while(numIterator.hasNext()){
+        while (numIterator.hasNext()) {
             int tip = numIterator.next();
-            System.out.println(tip);
+            System.out.print(tip + "; ");
         }
+        System.out.println(); //added in terms of blank line after showing all results
     }
 }

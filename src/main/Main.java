@@ -11,7 +11,6 @@ public class Main {
         System.out.println("Witaj w programie " + Main.VERSION);
 
         Control control = new Control();
-        DataBase dataBase = new DataBase();
 
         control.mainControlPanel();
 
