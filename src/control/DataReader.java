@@ -27,6 +27,22 @@ public class DataReader {
         return number;
     }
 
+    public double getDouble() {
+        double number = 0;
+        boolean flag = true;
+        while (flag) {
+            try {
+                number = scanner.nextDouble();
+                flag = false;
+            } catch (InputMismatchException e) {
+                System.err.println("Wprowadzono wartość, która nie jest liczbą, podaj ponownie:");
+            } finally {
+                scanner.nextLine();
+            }
+        }
+        return number;
+    }
+
     public String getString() {
         String string = scanner.nextLine();
         return string;

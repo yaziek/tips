@@ -6,12 +6,6 @@ import static control.Menu.createFromInt;
 
 public class Control {
 
-    public static final int ADD = 1;
-    public static final int SHOW = 2;
-    public static final int SUM = 3;
-    public static final int AVG = 4;
-    public static final int EXIT = 5;
-
     DataBase dataBase = new DataBase();
     DataReader dataReader = new DataReader();
 

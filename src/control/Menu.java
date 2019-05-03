@@ -1,10 +1,3 @@
-//Enum type doesnt work for Control.java
-// need to go back for it later
-// for now, simple static values chooosen
-//
-//
-//
-//
 package control;
 
 public enum Menu {
