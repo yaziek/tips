@@ -1,16 +1,11 @@
 package control;
-
 import data.DataBase;
-
-import java.util.InputMismatchException;
 import java.util.Iterator;
-import java.util.Scanner;
+
+import static control.Menu.createFromInt;
 
 public class Control {
 
-    Scanner scanner = new Scanner(System.in);
-
-    public static int OPTION = 0;
     public static final int ADD = 1;
     public static final int SHOW = 2;
     public static final int SUM = 3;
@@ -21,40 +16,37 @@ public class Control {
     DataReader dataReader = new DataReader();
 
     public void mainControlPanel() {
-        int option; //help value for Control Loop
+        Menu option; //help value for Control Loop
         do {
             showMenu();
-            option = dataReader.getInt();
+            option = createFromInt(dataReader.getInt());
             switch (option) {
-                case ADD:
+                case ADD_TIP:
                     addTip();
                     break;
-                case SHOW:
+                case SHOW_TIPS:
                     showTips();
                     break;
-                case SUM:
+                case SUM_TIPS:
                     sumTips();
                     break;
-                case AVG:
+                case AVG_TIPS:
                     average();
                     break;
                 case EXIT:
-//                    option = 0;
                     exit();
                     break;
                 default:
                     System.err.println("Nie ma takiej opcji, wprowadź ponownie:");
             }
-        } while (option != EXIT);
+        } while (!option.equals(Menu.EXIT));
     }
 
         private void showMenu () {
             System.out.println("Wpisz co chcesz zrobić, dostępne opcje:");
-            System.out.println(ADD + " - dodaj swój napiwek");
-            System.out.println(SHOW + " - pokazuje Twoje napiwki");
-            System.out.println(SUM + " - wyświetla sumę napiwków");
-            System.out.println(AVG + " - wyświetla średnią z napiwków");
-            System.out.println(EXIT + " - wyjście z programu");
+           for(Menu menu: Menu.values()){
+               System.out.println(menu.toString());
+           }
         }
 
         public void addTip () {
@@ -62,6 +54,8 @@ public class Control {
             int result = dataReader.getInt();
             dataBase.add(result);
             System.out.println("Dodano " + result);
+            System.out.println("\n"); //added in terms of blank line after showing all results
+
         }
 
         public void showTips () {
@@ -72,7 +66,7 @@ public class Control {
                 int tip = numIterator.next();
                 System.out.print(tip + "; ");
             }
-            System.out.println(); //added in terms of blank line after showing all results
+            System.out.println("\n"); //added in terms of blank line after showing all results
         }
 
         public void sumTips () {
@@ -81,6 +75,8 @@ public class Control {
                 sum += integer;
             }
             System.out.println("Suma wszystkich Twoich napiwków to: " + sum);
+            System.out.println("\n"); //added in terms of blank line after showing all results
+
         }
 
         public void average () {
@@ -90,6 +86,8 @@ public class Control {
             }
             int avr = sum / dataBase.getTips().size();
             System.out.println("Zarobiłeś średnio: " + avr);
+            System.out.println("\n"); //added in terms of blank line after showing all results
+
         }
 
         private void exit () {

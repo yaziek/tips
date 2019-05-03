@@ -31,4 +31,8 @@ public class DataReader {
         String string = scanner.nextLine();
         return string;
     }
+
+    public String printString(String string){
+        return string;
+    }
 }
