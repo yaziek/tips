@@ -1,12 +1,14 @@
 package control;
 
+import exception.NoSuchOptionException;
+
 public enum Menu {
 
     EXIT(0, "Wyjście z programu"),
     ADD_TIP(1, "Dodaj swój napiwek"),
     SHOW_TIPS(2, "Pokazuje Twoje napiwki"),
     SUM_TIPS(3, "Wyświetla sumę napiwków"),
-    AVG_TIPS(4,"Wyświetla średnią z napiwków" );
+    AVG_TIPS(4, "Wyświetla średnią z napiwków");
 
 
     private final int index;
@@ -25,10 +27,13 @@ public enum Menu {
         return description;
     }
 
-    static Menu createFromInt(int option) {
-        return Menu.values()[option];
+    static Menu createFromInt(int option) throws NoSuchOptionException {
+       try{
+           return Menu.values()[option];
+       }catch (ArrayIndexOutOfBoundsException ex){
+           throw new NoSuchOptionException("Brak opcji o id " + option);
+       }
     }
-
 
     public static Menu fromDescription(String description) {
         Menu[] choices = values();
@@ -43,4 +48,4 @@ public enum Menu {
     public String toString() {
         return index + " - " + description;
     }
-    }
+}

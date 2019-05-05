@@ -11,21 +11,29 @@ public class DataReader {
         scanner.close();
     }
 
-    public int getInt() {
-        int number = 0;
-        boolean flag = true;
-        while (flag) {
-            try {
-                number = scanner.nextInt();
-                flag = false;
-            } catch (InputMismatchException e) {
-                System.err.println("Wprowadzono wartość, która nie jest liczbą, podaj ponownie:");
-            } finally {
-                scanner.nextLine();
-            }
+    public int getInt(){
+        try{
+            return scanner.nextInt();
+        }finally {
+            scanner.nextLine();
         }
-        return number;
     }
+
+//    public int getInt() {
+//        int number = 0;
+//        boolean flag = true;
+//        while (flag) {
+//            try {
+//                number = scanner.nextInt();
+//                flag = false;
+//            } catch (InputMismatchException e) {
+//                System.err.println("Wprowadzono wartość, która nie jest liczbą, podaj ponownie:");
+//            } finally {
+//                scanner.nextLine();
+//            }
+//        }
+//        return number;
+//    }
 
     public double getDouble() {
         double number = 0;

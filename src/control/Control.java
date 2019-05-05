@@ -1,5 +1,9 @@
 package control;
+
 import data.DataBase;
+import exception.NoSuchOptionException;
+
+import java.util.InputMismatchException;
 import java.util.Iterator;
 
 import static control.Menu.createFromInt;
@@ -13,7 +17,7 @@ public class Control {
         Menu option; //help value for Control Loop
         do {
             showMenu();
-            option = createFromInt(dataReader.getInt());
+            option = getOption();
             switch (option) {
                 case ADD_TIP:
                     addTip();
@@ -36,58 +40,79 @@ public class Control {
         } while (!option.equals(Menu.EXIT));
     }
 
-        private void showMenu () {
-            System.out.println("Wpisz co chcesz zrobić, dostępne opcje:");
-           for(Menu menu: Menu.values()){
-               System.out.println(menu.toString());
-           }
-        }
-
-        public void addTip () {
-            System.out.println("Podaj swój wynik:");
-            int result = dataReader.getInt();
-            dataBase.add(result);
-            System.out.println("Dodano " + result);
-            System.out.println("\n"); //added in terms of blank line after showing all results
-
-        }
-
-        public void showTips () {
-            //using Iterator class (fast iterating) - later change it for lambda
-            System.out.println("Twoje napiwki:");
-            Iterator<Integer> numIterator = dataBase.getTips().iterator();
-            while (numIterator.hasNext()) {
-                int tip = numIterator.next();
-                System.out.print(tip + "; ");
+    private Menu getOption() { //loop for getting proper value, exceptions handled
+        boolean optionOk = false;
+        Menu option = null;
+        while (!optionOk) {
+            try {
+                option = Menu.createFromInt(dataReader.getInt());
+                optionOk = true;
+            } catch (NoSuchOptionException ex) {
+                System.err.println(ex.getMessage() + ", podaj ponownie");
+            } catch (InputMismatchException ingored) {
+                System.err.println("Wprowadzono wartość, która nie jest liczbą, podaj ponownie");
             }
-            System.out.println("\n"); //added in terms of blank line after showing all results
         }
+        return option;
+    }
 
-        public void sumTips () {
-            int sum = 0;
-            for (Integer integer : dataBase.getTips()) {
-                sum += integer;
-            }
-            System.out.println("Suma wszystkich Twoich napiwków to: " + sum);
-            System.out.println("\n"); //added in terms of blank line after showing all results
-
+    private void showMenu() {
+        System.out.println("Wpisz co chcesz zrobić, dostępne opcje:");
+        for (Menu menu : Menu.values()) {
+            System.out.println(menu.toString());
         }
+    }
 
-        public void average () {
-            int sum = 0;
-            for (Integer integer : dataBase.getTips()) {
-                sum += integer;
-            }
-            int avr = sum / dataBase.getTips().size();
-            System.out.println("Zarobiłeś średnio: " + avr);
-            System.out.println("\n"); //added in terms of blank line after showing all results
-
-        }
-
-        private void exit () {
-            System.out.println("Do zobaczenia!");
-            dataReader.close();
-        }
-
+    private void addTip() {
+        System.out.println("Podaj swój wynik:");
+        int result = dataReader.getInt();
+        dataBase.add(result);
+        System.out.println("Dodano " + result);
+        System.out.println("\n"); //added in terms of blank line after showing all results
 
     }
+
+    private void showTips() {
+        //using Iterator class (fast iterating) - later change it for lambda
+        System.out.println("Twoje napiwki:");
+        Iterator<Integer> numIterator = dataBase.getTips().iterator();
+        while (numIterator.hasNext()) {
+            int tip = numIterator.next();
+            System.out.print(tip + "; ");
+        }
+        System.out.println("\n"); //added in terms of blank line after showing all results
+    }
+
+    private void sumTips() {
+        int sum = 0;
+        for (Integer integer : dataBase.getTips()) {
+            sum += integer;
+        }
+        System.out.println("Suma wszystkich Twoich napiwków to: " + sum);
+        System.out.println("\n"); //added in terms of blank line after showing all results
+
+    }
+
+    private void average() {
+        int avr = 0;
+        int sum = 0;
+        for (Integer integer : dataBase.getTips()) {
+            sum += integer;
+        }
+        try {
+            avr = sum / dataBase.getTips().size();
+        }catch (ArithmeticException ex){
+            // nothing to add here, msg showed below
+        }
+        System.out.println("Zarobiłeś średnio: " + avr);
+        System.out.println("\n"); //added in terms of blank line after showing all results
+
+    }
+
+    private void exit() {
+        System.out.println("Do zobaczenia!");
+        dataReader.close();
+    }
+
+
+}
