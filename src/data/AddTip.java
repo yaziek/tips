@@ -1,4 +1,4 @@
-// to be done in terms of dividing Control class
+// to be done in terms of dividing Control class for smaller classes
 
 package data;
 

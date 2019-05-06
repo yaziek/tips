@@ -6,42 +6,31 @@
 // Class for tests
 // Class for tests
 
-import java.util.InputMismatchException;
-import java.util.Scanner;
+import user.CreateAndAddPerson;
+import user.Person;
+import user.PersonCreator;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
 
 public class Test {
 
-    Scanner scanner = new Scanner(System.in);
-
-    private void getOption() {
-        boolean optionOk = false;
-        int opt = 0;
-        while (!optionOk) {
-            try {
-                opt = scanner.nextInt();
-                optionOk = true;
-            } catch (InputMismatchException ex) {
-                System.err.println("Wprowadzono wartość, która nie jest liczbą, podaj ponownie:");
-            }
-        }
-    }
-
-    public int testingWhile(){
-        int i = 0;
-
-        while (i < 5){
-            i++;
-        }
-        return i;
-    }
-
     public static void main(String[] args) {
 
-        Test test = new Test();
+        PersonCreator personCreator = new PersonCreator();
+        CreateAndAddPerson createAndAddPerson = new CreateAndAddPerson();
 
-        test.testingWhile();
+        Map<String, Person> list = new HashMap<>();
 
-        System.out.println(test.testingWhile());
+        Person p1 = personCreator.createPerson();
+
+        list.put(p1.getNickname(), p1);
+
+        Set<String> nicknames = list.keySet();
+        for (String nickname : nicknames) {
+            System.out.println(nickname);
+        }
 
 
     }

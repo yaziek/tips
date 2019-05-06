@@ -1,14 +1,21 @@
 package user;
 
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
 public class PersonDatabase {
 
-    Map<String, Person> personDatabase = new HashMap<>();
+    Map<String, Person> accounts = new HashMap<>();
 
-    public void addPerson(Person person){
-        personDatabase.put(person.nickname, person);
+    public boolean addAccount(Person person){
+        String key = person.getNickname();
+
+        if (accounts.get(key) != null){
+            return false;
+        }else {
+            accounts.put(key, person);
+            return true;
+        }
     }
+
 }
