@@ -1,6 +1,7 @@
 package main;
 
 import control.Control;
+import user.CreateAndAddPerson;
 
 public class Main {
 
@@ -10,7 +11,9 @@ public class Main {
         System.out.println("Witaj w programie " + Main.VERSION);
 
         Control control = new Control();
+        CreateAndAddPerson createAndAddPerson = new CreateAndAddPerson();
 
+        createAndAddPerson.createAndAddPerson();
         control.mainControlPanel();
     }
 }

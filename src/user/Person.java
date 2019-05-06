@@ -3,6 +3,8 @@ package user;
 import java.util.Objects;
 
 public class Person {
+
+    String nickname;
     String firstName;
     String lastName;
     double wage;
@@ -11,7 +13,8 @@ public class Person {
     double sink;
     double other;
 
-    public Person(String firstName, String lastName, double wage, double bartender, double dinner, double sink, double other) {
+    public Person(String nickname, String firstName, String lastName, double wage, double bartender, double dinner, double sink, double other) {
+        this.nickname = nickname;
         this.firstName = firstName;
         this.lastName = lastName;
         this.wage = wage;
@@ -23,6 +26,13 @@ public class Person {
 
     public Person(){
 
+    }
+    public String getNickname() {
+        return nickname;
+    }
+
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
     }
 
     public String getFirstName() {
@@ -91,19 +101,21 @@ public class Person {
                 Double.compare(person.dinner, dinner) == 0 &&
                 Double.compare(person.sink, sink) == 0 &&
                 Double.compare(person.other, other) == 0 &&
+                Objects.equals(nickname, person.nickname) &&
                 Objects.equals(firstName, person.firstName) &&
                 Objects.equals(lastName, person.lastName);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(firstName, lastName, wage, bartender, dinner, sink, other);
+        return Objects.hash(nickname, firstName, lastName, wage, bartender, dinner, sink, other);
     }
 
     @Override
     public String toString() {
         return "Person{" +
-                "firstName='" + firstName + '\'' +
+                "nickname='" + nickname + '\'' +
+                ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", wage=" + wage +
                 ", bartender=" + bartender +
