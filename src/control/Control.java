@@ -6,8 +6,6 @@ import exception.NoSuchOptionException;
 import java.util.InputMismatchException;
 import java.util.Iterator;
 
-import static control.Menu.createFromInt;
-
 public class Control {
 
     DataBase dataBase = new DataBase();

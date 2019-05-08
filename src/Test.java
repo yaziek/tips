@@ -16,21 +16,22 @@ import java.util.Set;
 
 public class Test {
 
+    public class Animal {
+        String name;
+        String color;
+
+        public Animal(String name, String color) {
+            this.name = name;
+            this.color = color;
+        }
+
+    }
+
     public static void main(String[] args) {
 
-        PersonCreator personCreator = new PersonCreator();
-        CreateAndAddPerson createAndAddPerson = new CreateAndAddPerson();
+        Map<String, Animal> list = new HashMap<>();
 
-        Map<String, Person> list = new HashMap<>();
-
-        Person p1 = personCreator.createPerson();
-
-        list.put(p1.getNickname(), p1);
-
-        Set<String> nicknames = list.keySet();
-        for (String nickname : nicknames) {
-            System.out.println(nickname);
-        }
+//        Animal animal1 = new Animal("Panda", "Black");
 
 
     }

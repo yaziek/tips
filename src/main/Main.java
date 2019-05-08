@@ -18,7 +18,6 @@ public class Main {
         PersonDatabase personDatabase = new PersonDatabase();
 
         personMenu.personMenuControl();
-
-//        control.mainControlPanel();
+        control.mainControlPanel();
     }
 }
