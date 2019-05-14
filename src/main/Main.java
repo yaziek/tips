@@ -2,6 +2,7 @@ package main;
 
 import control.Control;
 import user.CreateAndAddPerson;
+import user.Person;
 import user.PersonDatabase;
 import user.PersonMenu;
 
@@ -17,7 +18,6 @@ public class Main {
         PersonMenu personMenu = new PersonMenu();
         PersonDatabase personDatabase = new PersonDatabase();
 
-        personMenu.personMenuControl();
         control.mainControlPanel();
     }
 }

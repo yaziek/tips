@@ -12,7 +12,7 @@ public class PersonDatabase {
         accounts.put(key, person);
     }
 
-    public Person logInToAccount(String key){
+    public Person getPerson(String key){
         return accounts.get(key);
     }
 

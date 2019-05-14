@@ -17,15 +17,15 @@ public class PersonMenu {
     public static final int ADD_ACCOUNT = 2;
     public static final int REMOVE_ACCOUNT = 3;
 
-    public void personMenuControl() {
-        int option;
+    public Person personMenuControl() {
+        Person person = null;
         do {
             welcome();
             OPTION = dataReader.getInt();
             switch (OPTION) {
                 case LOG_IN:
 //                    logIn();
-                    personDatabase.logInToAccount(logIn());
+                    person = personDatabase.getPerson(logIn());
                     /*TODO
                      *  create class which check if the person is created or not*/
                     break;
@@ -43,6 +43,8 @@ public class PersonMenu {
                     break;
             }
         } while (OPTION != EXIT);
+
+        return person;
     }
 
     private void removeAccount() {

@@ -2,14 +2,18 @@ package control;
 
 import data.DataBase;
 import exception.NoSuchOptionException;
+import user.Person;
+import user.PersonMenu;
 
 import java.util.InputMismatchException;
 import java.util.Iterator;
 
 public class Control {
-
     DataBase dataBase = new DataBase();
     DataReader dataReader = new DataReader();
+    PersonMenu personMenu = new PersonMenu();
+
+    Person dataBaseOwner = personMenu.personMenuControl();
 
     public void mainControlPanel() {
         Menu option; //help value for Control Loop
@@ -75,7 +79,8 @@ public class Control {
         System.out.println("Twoje napiwki:");
         Iterator<Integer> numIterator = dataBase.getTips().iterator();
         while (numIterator.hasNext()) {
-            int tip = numIterator.next();
+            double tip = numIterator.next();
+            tip = tip - dataBaseOwner.getDinner();
             System.out.print(tip + "; ");
         }
         System.out.println("\n"); //added in terms of blank line after showing all results
