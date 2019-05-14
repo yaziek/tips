@@ -7,12 +7,13 @@ public class PersonDatabase {
 
     Map<String, Person> accounts = new HashMap<>();
 
-    /* TODO
-    *   can not add multiple accounts, only one account avaible at the time
-    * */
     public void addAccount(Person person){
         String key = person.getNickname();
         accounts.put(key, person);
+    }
+
+    public Person logInToAccount(String key){
+        return accounts.get(key);
     }
 
 //    public boolean addAccount(Person person){
