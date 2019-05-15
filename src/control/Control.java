@@ -2,6 +2,7 @@ package control;
 
 import data.DataBase;
 import exception.NoSuchOptionException;
+import files.CreateFileDataBase;
 import user.Person;
 import user.PersonMenu;
 
@@ -12,10 +13,14 @@ public class Control {
     DataBase dataBase = new DataBase();
     DataReader dataReader = new DataReader();
     PersonMenu personMenu = new PersonMenu();
+    CreateFileDataBase create = new CreateFileDataBase();
 
     Person dataBaseOwner = personMenu.personCreatorLoop();
 
     public void mainControlPanel() {
+
+//        create.createFile(dataBaseOwner); //<<<creating file to storage tips
+
         Menu option; //help value for Control Loop
         if (PersonMenu.OPTION == 0) {
             do {
@@ -124,7 +129,7 @@ public class Control {
 
     }
 
-    private int sumOfCosts(){
+    private int sumOfCosts() {
         return dataBaseOwner.getBartender() + dataBaseOwner.getDinner() + dataBaseOwner.getSink() + dataBaseOwner.getOther();
     }
 

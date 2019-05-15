@@ -6,7 +6,6 @@
 // Class for tests
 // Class for tests
 
-import user.CreateAndAddPerson;
 import user.Person;
 import user.PersonCreator;
 

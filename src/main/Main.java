@@ -1,7 +1,6 @@
 package main;
 
 import control.Control;
-import user.CreateAndAddPerson;
 import user.PersonDatabase;
 import user.PersonMenu;
 
@@ -15,5 +14,6 @@ public class Main {
         Control control = new Control();
 
         control.mainControlPanel();
+
     }
 }

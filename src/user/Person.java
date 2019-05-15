@@ -1,8 +1,10 @@
 package user;
 
+import java.io.Serializable;
 import java.util.Objects;
 
-public class Person {
+public class Person implements Serializable {
+    private static final long serialVersionUID = 3812017177088226528L;
 
     private String nickname;
     private String firstName;
