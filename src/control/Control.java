@@ -13,33 +13,46 @@ public class Control {
     DataReader dataReader = new DataReader();
     PersonMenu personMenu = new PersonMenu();
 
-    Person dataBaseOwner = personMenu.personMenuControl();
+    Person dataBaseOwner = personMenu.personCreatorLoop();
 
     public void mainControlPanel() {
         Menu option; //help value for Control Loop
-        do {
-            showMenu();
-            option = getOption();
-            switch (option) {
-                case ADD_TIP:
-                    addTip();
-                    break;
-                case SHOW_TIPS:
-                    showTips();
-                    break;
-                case SUM_TIPS:
-                    sumTips();
-                    break;
-                case AVG_TIPS:
-                    average();
-                    break;
-                case EXIT:
-                    exit();
-                    break;
-                default:
-                    System.err.println("Nie ma takiej opcji, wprowadź ponownie:");
-            }
-        } while (!option.equals(Menu.EXIT));
+        if (PersonMenu.OPTION == 0) {
+            do {
+                showMenu();
+                option = getOption();
+                switch (option) {
+                    case ADD_TIP:
+                        addTip();
+                        break;
+                    case SHOW_TIPS:
+                        showTips();
+                        break;
+                    case SUM_TIPS:
+                        sumTips();
+                        break;
+                    case AVG_TIPS:
+                        average();
+                        break;
+                    case COSTS:
+                        showCosts();
+                        break;
+                    case EXIT:
+                        exit();
+                        break;
+                    default:
+                        System.err.println("Nie ma takiej opcji, wprowadź ponownie:");
+                }
+            } while (!option.equals(Menu.EXIT));
+        }
+    }
+
+    private void showCosts() {
+        System.out.println("Twoje dzienne koszty to:");
+        System.out.println("Dla barmana: " + dataBaseOwner.getBartender());
+        System.out.println("Za obiad: " + dataBaseOwner.getDinner());
+        System.out.println("Na zmywak: " + dataBaseOwner.getSink());
+        System.out.println("Inne koszty: " + dataBaseOwner.getOther());
     }
 
     private Menu getOption() { //loop for getting proper value, exceptions handled
@@ -68,8 +81,8 @@ public class Control {
     private void addTip() {
         System.out.println("Podaj swój wynik:");
         int result = dataReader.getInt();
-        dataBase.add(result);
-        System.out.println("Dodano " + result);
+        dataBase.add(result - sumOfCosts()); //adding tip reduced by costs
+        System.out.println("Dodano " + result + " pomniejszone o koszty: " + sumOfCosts());
         System.out.println("\n"); //added in terms of blank line after showing all results
 
     }
@@ -80,7 +93,6 @@ public class Control {
         Iterator<Integer> numIterator = dataBase.getTips().iterator();
         while (numIterator.hasNext()) {
             double tip = numIterator.next();
-            tip = tip - dataBaseOwner.getDinner();
             System.out.print(tip + "; ");
         }
         System.out.println("\n"); //added in terms of blank line after showing all results
@@ -104,12 +116,16 @@ public class Control {
         }
         try {
             avr = sum / dataBase.getTips().size();
-        }catch (ArithmeticException ex){
+        } catch (ArithmeticException ex) {
             // nothing to add here, msg showed below
         }
         System.out.println("Zarobiłeś średnio: " + avr);
         System.out.println("\n"); //added in terms of blank line after showing all results
 
+    }
+
+    private int sumOfCosts(){
+        return dataBaseOwner.getBartender() + dataBaseOwner.getDinner() + dataBaseOwner.getSink() + dataBaseOwner.getOther();
     }
 
     private void exit() {

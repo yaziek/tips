@@ -2,7 +2,6 @@ package main;
 
 import control.Control;
 import user.CreateAndAddPerson;
-import user.Person;
 import user.PersonDatabase;
 import user.PersonMenu;
 
@@ -14,9 +13,6 @@ public class Main {
         System.out.println("Witaj w programie " + Main.VERSION);
 
         Control control = new Control();
-        CreateAndAddPerson createAndAddPerson = new CreateAndAddPerson();
-        PersonMenu personMenu = new PersonMenu();
-        PersonDatabase personDatabase = new PersonDatabase();
 
         control.mainControlPanel();
     }

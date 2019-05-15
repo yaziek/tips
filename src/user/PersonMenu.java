@@ -8,34 +8,35 @@ public class PersonMenu {
 
     PersonDatabase personDatabase = new PersonDatabase();
     DataReader dataReader = new DataReader();
-    CreateAndAddPerson createAndAddPerson = new CreateAndAddPerson();
     PersonCreator personCreator = new PersonCreator();
 
-    public static int OPTION;
+    public static int OPTION = -1;
     public static final int EXIT = 0;
     public static final int LOG_IN = 1;
     public static final int ADD_ACCOUNT = 2;
     public static final int REMOVE_ACCOUNT = 3;
 
-    public Person personMenuControl() {
+    public Person personCreatorLoop() {
         Person person = null;
         do {
             welcome();
             OPTION = dataReader.getInt();
             switch (OPTION) {
                 case LOG_IN:
-//                    logIn();
                     person = personDatabase.getPerson(logIn());
                     /*TODO
                      *  create class which check if the person is created or not*/
                     break;
                 case ADD_ACCOUNT:
-//                  createAndAddPerson.createAdd(); <<<<< why does it not work????????
                     Person p1 = personCreator.createPerson();
                     personDatabase.addAccount(p1);
                     break;
                 case REMOVE_ACCOUNT:
                     removeAccount();
+                    break;
+                case EXIT:
+                    System.out.println("Do zobaczenia!");
+                    OPTION = EXIT;
                     break;
                 default:
                     System.err.println("Wprowadzono wartość, która nie jest liczbą, podaj ponownie:");
@@ -51,6 +52,7 @@ public class PersonMenu {
         Set<String> accounts = personDatabase.accounts.keySet();
         if (accounts.size() == 0) {
             System.err.println("Nie ma żadnych aktywnych użytkowników.");
+            System.err.println("Najpierw załóż konto!");
             System.out.println();
         } else {
             System.out.println("Które konto chcesz skasować:");
@@ -104,10 +106,11 @@ public class PersonMenu {
 
     private void welcome() {
         System.out.println("Co chcesz zrobić:");
+        System.out.println(EXIT + " - wyjście z programu");
         System.out.println(LOG_IN + " - zaloguj się na swoje konto");
         System.out.println(ADD_ACCOUNT + " - dodaj nowe konto");
         System.out.println(REMOVE_ACCOUNT + " - usuń istniejące konto");
-        System.out.println(EXIT + " - wyjście z programu");
+
     }
 
 

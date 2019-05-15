@@ -8,8 +8,8 @@ public enum Menu {
     ADD_TIP(1, "Dodaj swój napiwek"),
     SHOW_TIPS(2, "Pokazuje Twoje napiwki"),
     SUM_TIPS(3, "Wyświetla sumę napiwków"),
-    AVG_TIPS(4, "Wyświetla średnią z napiwków");
-
+    AVG_TIPS(4, "Wyświetla średnią z napiwków"),
+    COSTS(5, "Pokazuje Twoje dzienne koszty");
 
     private final int index;
     private final String description;
